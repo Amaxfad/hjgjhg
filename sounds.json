@@ -1,0 +1,7 @@
+{
+  "item.portal_gun.shoot": {
+    "sounds": [
+      "multiverselab:item/portal_shoot"
+    ]
+  }
+}
