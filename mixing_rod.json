@@ -1,6 +1,6 @@
 {
-  "model": {
-    "type": "minecraft:model",
-    "model": "multiverselab:item/mixing_rod"
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "multiverselab:item/mixing_rod"
   }
 }

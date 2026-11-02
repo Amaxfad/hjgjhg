@@ -1,6 +1,6 @@
 {
-  "model": {
-    "type": "minecraft:model",
-    "model": "multiverselab:item/interdimensional_goo"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "multiverselab:item/interdimensional_goo"
   }
 }

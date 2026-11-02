@@ -1,6 +1,6 @@
 {
-  "model": {
-    "type": "minecraft:model",
-    "model": "multiverselab:item/flurbo_crystal"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "multiverselab:item/flurbo_crystal"
   }
 }

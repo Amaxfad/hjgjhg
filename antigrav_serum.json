@@ -1,6 +1,6 @@
 {
-  "model": {
-    "type": "minecraft:model",
-    "model": "multiverselab:item/antigrav_serum"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "multiverselab:item/antigrav_serum"
   }
 }

@@ -1,6 +1,6 @@
 {
-  "model": {
-    "type": "minecraft:model",
-    "model": "multiverselab:item/mega_seed_extract"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "multiverselab:item/mega_seed_extract"
   }
 }
