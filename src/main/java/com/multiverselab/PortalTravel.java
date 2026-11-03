@@ -48,12 +48,12 @@ public final class PortalTravel {
         if (!level.getBlockState(pos).isAir() || !level.getBlockState(pos.above()).isAir()) {
             return false;
         }
-        BlockState state = ModContent.PORTAL_FIELD.get().defaultBlockState()
+        BlockState state = ModContent.PORTAL_FIELD.defaultBlockState()
                 .setValue(PortalFieldBlock.AXIS, facing.getAxis())
                 .setValue(PortalFieldBlock.DEST, destIndex)
                 .setValue(PortalFieldBlock.AGE, 0);
         level.setBlock(pos, state, 3);
-        level.scheduleTick(pos, ModContent.PORTAL_FIELD.get(), 5);
+        level.scheduleTick(pos, ModContent.PORTAL_FIELD, 5);
         return true;
     }
 

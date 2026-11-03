@@ -4,25 +4,20 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v5
         with:
-          distribution: temurin
-          java-version: |
-            8
-            21
-            25
-      - name: Build
-        run: |
-          chmod +x gradlew
-          ./gradlew build --no-daemon --stacktrace
-      - uses: actions/upload-artifact@v4
+          java-version: '25'
+          distribution: 'microsoft'
+      - run: chmod +x ./gradlew
+      - run: ./gradlew build --no-daemon --stacktrace
+      - uses: actions/upload-artifact@v7
         with:
           name: multiverselab-jar
-          path: build/libs/*.jar
-      - uses: actions/upload-artifact@v4
+          path: build/libs/multiverselab-*.jar
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: build-reports

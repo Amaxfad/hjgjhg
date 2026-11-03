@@ -49,7 +49,7 @@ public class PortalGunItem extends Item {
 
         InteractionHand other = hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
         ItemStack vial = player.getItemInHand(other);
-        if (vial.is(ModContent.PORTAL_VIAL.get())) {
+        if (vial.is(ModContent.PORTAL_VIAL)) {
             if (fuel + FUEL_PER_VIAL > MAX_FUEL) {
                 player.displayClientMessage(Component.translatable("multiverselab.msg.full"), true);
                 return InteractionResult.FAIL;
@@ -81,7 +81,7 @@ public class PortalGunItem extends Item {
             return InteractionResult.FAIL;
         }
 
-        here.playSound(null, spot, ModContent.PORTAL_SHOOT.get(), SoundSource.PLAYERS, 1f, 1f);
+        here.playSound(null, spot, ModContent.PORTAL_SHOOT, SoundSource.PLAYERS, 1f, 1f);
         setInt(gun, "fuel", fuel - 1);
         player.getCooldowns().addCooldown(gun, 20);
         return InteractionResult.SUCCESS;

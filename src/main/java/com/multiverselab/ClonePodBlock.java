@@ -4,7 +4,9 @@ import java.util.Set;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
+import com.mojang.serialization.Codec;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -51,8 +53,9 @@ public class ClonePodBlock extends Block {
 
     public static final EnumProperty<PodState> POD = EnumProperty.create("pod", PodState.class);
 
-    private static final String KEY_POS = "ml_pod_pos";
-    private static final String KEY_DIM = "ml_pod_dim";
+    /** Привязка игрока к капсуле: "измерение|позиция" (сохраняется вместе с игроком). */
+    private static final AttachmentType<String> BOUND_POD =
+            AttachmentRegistry.createPersistent(ModContent.id("bound_pod"), Codec.STRING);
     private static final int OPEN_TICKS = 60; // 3 секунды
 
     private static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 16, 15);
@@ -77,7 +80,7 @@ public class ClonePodBlock extends Block {
     @Override
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
                                           Player player, InteractionHand hand, BlockHitResult hit) {
-        if (stack.is(ModContent.CLONE_VIAL.get()) && state.getValue(POD) == PodState.EMPTY) {
+        if (stack.is(ModContent.CLONE_VIAL) && state.getValue(POD) == PodState.EMPTY) {
             if (level.isClientSide()) {
                 return InteractionResult.SUCCESS;
             }
@@ -123,9 +126,7 @@ public class ClonePodBlock extends Block {
     // ---------------------------------------------------------------- привязка и воскрешение
 
     private static void bind(ServerPlayer player, ServerLevel level, BlockPos pos) {
-        CompoundTag data = player.getPersistentData();
-        data.putLong(KEY_POS, pos.asLong());
-        data.putString(KEY_DIM, level.dimension().toString());
+        player.setAttached(BOUND_POD, level.dimension().toString() + "|" + pos.asLong());
     }
 
     /**
@@ -133,12 +134,21 @@ public class ClonePodBlock extends Block {
      * и возвращает true (смерть нужно отменить).
      */
     public static boolean tryRevive(ServerPlayer player) {
-        CompoundTag data = player.getPersistentData();
-        if (!data.contains(KEY_POS)) {
+        String bound = player.getAttached(BOUND_POD);
+        if (bound == null) {
             return false;
         }
-        BlockPos pos = BlockPos.of(data.getLongOr(KEY_POS, 0L));
-        String dim = data.getStringOr(KEY_DIM, "");
+        int cut = bound.lastIndexOf('|');
+        if (cut < 0) {
+            return false;
+        }
+        String dim = bound.substring(0, cut);
+        BlockPos pos;
+        try {
+            pos = BlockPos.of(Long.parseLong(bound.substring(cut + 1)));
+        } catch (NumberFormatException e) {
+            return false;
+        }
 
         ServerLevel target = null;
         for (ServerLevel l : ((ServerLevel) player.level()).getServer().getAllLevels()) {
@@ -156,8 +166,7 @@ public class ClonePodBlock extends Block {
         }
 
         // капсула расходуется
-        data.remove(KEY_POS);
-        data.remove(KEY_DIM);
+        player.removeAttached(BOUND_POD);
 
         player.setHealth(player.getMaxHealth());
         player.clearFire();

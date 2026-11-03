@@ -113,7 +113,7 @@ public class FlaskBlock extends Block {
             return InteractionResult.SUCCESS;
         }
 
-        if (stack.is(ModContent.MIXING_ROD.get())) {
+        if (stack.is(ModContent.MIXING_ROD)) {
             if (level.isClientSide()) {
                 return InteractionResult.SUCCESS;
             }
@@ -130,9 +130,9 @@ public class FlaskBlock extends Block {
                 }
                 stack.consume(1, player);
                 Item vialItem = switch (liquid) {
-                    case PORTAL -> ModContent.PORTAL_VIAL.get();
-                    case SERUM -> ModContent.SERUM_VIAL.get();
-                    default -> ModContent.CLONE_VIAL.get();
+                    case PORTAL -> ModContent.PORTAL_VIAL;
+                    case SERUM -> ModContent.SERUM_VIAL;
+                    default -> ModContent.CLONE_VIAL;
                 };
                 ItemStack out = new ItemStack(vialItem);
                 if (!player.getInventory().add(out)) {
@@ -168,9 +168,9 @@ public class FlaskBlock extends Block {
     // ---------------------------------------------------------------- химия
 
     private static int reagentIndex(ItemStack stack) {
-        if (stack.is(ModContent.FLURBO.get())) return 0;
-        if (stack.is(ModContent.MEGA_SEED.get())) return 1;
-        if (stack.is(ModContent.GOO.get())) return 2;
+        if (stack.is(ModContent.FLURBO)) return 0;
+        if (stack.is(ModContent.MEGA_SEED)) return 1;
+        if (stack.is(ModContent.GOO)) return 2;
         return -1;
     }
 
