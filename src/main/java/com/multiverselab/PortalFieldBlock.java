@@ -26,7 +26,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
  */
 public class PortalFieldBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
-    public static final IntegerProperty DEST = IntegerProperty.create("dest", 0, 4);
+    public static final IntegerProperty DEST = IntegerProperty.create("dest", 0, 7);
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 80);
 
     private static final VoxelShape SHAPE_Z = Block.box(0, 0, 6, 16, 16, 10);

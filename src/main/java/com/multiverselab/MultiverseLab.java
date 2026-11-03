@@ -2,6 +2,7 @@ package com.multiverselab;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.level.ServerPlayer;
 
 public final class MultiverseLab implements ModInitializer {
@@ -10,6 +11,7 @@ public final class MultiverseLab implements ModInitializer {
     @Override
     public void onInitialize() {
         ModContent.init();
+        ServerLifecycleEvents.SERVER_STARTED.register(RickHouseMap::install);
         // Смерть игрока с готовой капсулой клона отменяется: игрок появляется в капсуле.
         ServerLivingEntityEvents.ALLOW_DEATH.register((entity, source, amount) ->
                 !(entity instanceof ServerPlayer player && ClonePodBlock.tryRevive(player)));

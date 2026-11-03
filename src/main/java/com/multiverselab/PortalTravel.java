@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -23,7 +24,10 @@ public final class PortalTravel {
 
     /** Пути измерений. Первое - обычный мир, остальные описаны в data/multiverselab/dimension/. */
     public static final List<String> NAMES =
-            List.of("overworld", "cronenberg", "gazorpazorp", "citadel", "snowball");
+            List.of("overworld", "cronenberg", "gazorpazorp", "citadel", "snowball", "rick_house");
+
+    /** Индекс измерения "Дом Рика" в списке NAMES. */
+    public static final int RICK_HOUSE = 5;
 
     public static ResourceKey<Level> keyOf(int index) {
         String name = NAMES.get(Math.floorMod(index, NAMES.size()));
@@ -67,7 +71,17 @@ public final class PortalTravel {
         int originIndex = indexOf(here);
         Direction facing = player.getDirection();
 
-        BlockPos target = findSafe(dest, player.getBlockX(), player.getBlockZ());
+        BlockPos target;
+        if (destIndex == RICK_HOUSE) {
+            if (!RickHouseMap.isInstalled(here.getServer())) {
+                player.displayClientMessage(Component.translatable("multiverselab.msg.no_map"), false);
+                return;
+            }
+            target = BlockPos.containing(RickHouseMap.SPAWN_X, RickHouseMap.SPAWN_Y, RickHouseMap.SPAWN_Z);
+            dest.getChunk(target.getX() >> 4, target.getZ() >> 4);
+        } else {
+            target = findSafe(dest, player.getBlockX(), player.getBlockZ());
+        }
 
         here.sendParticles(ParticleTypes.PORTAL, player.getX(), player.getY() + 1, player.getZ(),
                 80, 0.5, 1.0, 0.5, 0.3);
