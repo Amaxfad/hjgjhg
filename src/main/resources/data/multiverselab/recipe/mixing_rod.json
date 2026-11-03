@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "  E",
+    " I ",
+    "I  "
+  ],
+  "key": {
+    "E": "minecraft:emerald",
+    "I": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "multiverselab:mixing_rod",
+    "count": 1
+  }
+}

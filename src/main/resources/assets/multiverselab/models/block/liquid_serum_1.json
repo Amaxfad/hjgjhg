@@ -1,0 +1,42 @@
+{
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "liquid": "multiverselab:block/liquid_serum",
+    "particle": "multiverselab:block/liquid_serum"
+  },
+  "elements": [
+    {
+      "from": [
+        5,
+        0.5,
+        5
+      ],
+      "to": [
+        11,
+        1.75,
+        11
+      ],
+      "shade": false,
+      "faces": {
+        "down": {
+          "texture": "#liquid"
+        },
+        "up": {
+          "texture": "#liquid"
+        },
+        "north": {
+          "texture": "#liquid"
+        },
+        "south": {
+          "texture": "#liquid"
+        },
+        "east": {
+          "texture": "#liquid"
+        },
+        "west": {
+          "texture": "#liquid"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "axis": "z"
+      },
+      "apply": {
+        "model": "multiverselab:block/portal_field"
+      }
+    },
+    {
+      "when": {
+        "axis": "x"
+      },
+      "apply": {
+        "model": "multiverselab:block/portal_field",
+        "y": 90
+      }
+    }
+  ]
+}

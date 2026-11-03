@@ -1,0 +1,42 @@
+{
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "portal": "multiverselab:block/portal_field",
+    "particle": "multiverselab:block/portal_field"
+  },
+  "elements": [
+    {
+      "from": [
+        -8,
+        0,
+        8
+      ],
+      "to": [
+        24,
+        32,
+        8
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#portal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#portal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "multiverselab:item/guns/portal_gun_mk2",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": 15989755
+      },
+      {
+        "type": "minecraft:constant",
+        "value": 65280
+      },
+      {
+        "type": "minecraft:constant",
+        "value": 15989755
+      }
+    ]
+  }
+}
