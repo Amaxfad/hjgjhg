@@ -14,6 +14,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 /** Протезы как у Рика: устанавливаются навсегда (хранятся у игрока, переживают смерть). */
 public final class Implants {
@@ -37,7 +38,12 @@ public final class Implants {
     }
 
     public static void registerTick() {
-        TickEvent.ServerTickEvent.Post.BUS.addListener(e -> tick(e.getServer()));
+        TickEvent.ServerTickEvent.Post.BUS.addListener(e -> {
+            MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+            if (server != null) {
+                tick(server);
+            }
+        });
     }
 
     /** Раз в 5 секунд обновляет эффекты у игроков с протезами. */
