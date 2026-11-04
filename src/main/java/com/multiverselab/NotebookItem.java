@@ -20,6 +20,7 @@ public class NotebookItem extends Item {
             player.displayClientMessage(Component.translatable("multiverselab.notebook.portal"), false);
             player.displayClientMessage(Component.translatable("multiverselab.notebook.serum"), false);
             player.displayClientMessage(Component.translatable("multiverselab.notebook.clone"), false);
+            player.displayClientMessage(Component.translatable("multiverselab.notebook.gold"), false);
             player.displayClientMessage(Component.translatable("multiverselab.notebook.warning"), false);
         }
         return InteractionResult.SUCCESS;

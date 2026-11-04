@@ -52,5 +52,8 @@
   "multiverselab.msg.pod_ready": "A clone is ready inside",
   "multiverselab.msg.pod_opening": "The pod is opening...",
   "multiverselab.msg.pod_revived": "You woke up in a new body. The pod opens in 3 seconds",
-  "multiverselab.notebook.clone": "Clone Serum: 1 : 1 : 2  (or 2 : 2 : 4). Right-click an empty Clone Pod with it."
+  "multiverselab.notebook.clone": "Clone Serum: 1 : 1 : 2  (or 2 : 2 : 4). Right-click an empty Clone Pod with it.",
+  "item.multiverselab.golden_portal_fluid": "Golden Portal Fluid Vial",
+  "multiverselab.msg.gold": "The fluid turned GOLD!",
+  "multiverselab.notebook.gold": "Golden Fluid (for the Golden Portal Gun): finished Portal Fluid + 1 Gold Ingot (right-click the flask)."
 }

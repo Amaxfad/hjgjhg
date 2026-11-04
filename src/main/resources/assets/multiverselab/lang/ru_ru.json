@@ -52,5 +52,8 @@
   "multiverselab.msg.pod_ready": "Внутри готовый клон",
   "multiverselab.msg.pod_opening": "Капсула открывается...",
   "multiverselab.msg.pod_revived": "Вы очнулись в новом теле. Капсула откроется через 3 секунды",
-  "multiverselab.notebook.clone": "Сыворотка клона: 1 : 1 : 2  (или 2 : 2 : 4). ПКМ по пустой капсуле клонирования."
+  "multiverselab.notebook.clone": "Сыворотка клона: 1 : 1 : 2  (или 2 : 2 : 4). ПКМ по пустой капсуле клонирования.",
+  "item.multiverselab.golden_portal_fluid": "Флакон золотой портальной жидкости",
+  "multiverselab.msg.gold": "Жидкость стала ЗОЛОТОЙ!",
+  "multiverselab.notebook.gold": "Золотая жидкость (для золотой пушки): готовая портальная жидкость + 1 золотой слиток (ПКМ по колбе)."
 }

@@ -48,21 +48,22 @@ public final class PortalTravel {
     }
 
     /** Ставит портал на {@code pos}, если там и выше свободно. Возвращает true при успехе. */
-    public static boolean placePortal(ServerLevel level, BlockPos pos, Direction facing, int destIndex) {
+    public static boolean placePortal(ServerLevel level, BlockPos pos, Direction facing, int destIndex, boolean gold) {
         if (!level.getBlockState(pos).isAir() || !level.getBlockState(pos.above()).isAir()) {
             return false;
         }
         BlockState state = ModContent.PORTAL_FIELD.defaultBlockState()
                 .setValue(PortalFieldBlock.AXIS, facing.getAxis())
                 .setValue(PortalFieldBlock.DEST, destIndex)
-                .setValue(PortalFieldBlock.AGE, 0);
+                .setValue(PortalFieldBlock.AGE, 0)
+                .setValue(PortalFieldBlock.GOLD, gold);
         level.setBlock(pos, state, 3);
         level.scheduleTick(pos, ModContent.PORTAL_FIELD, 5);
         return true;
     }
 
     /** Переносит игрока в измерение {@code destIndex} и ставит там обратный портал. */
-    public static void travel(ServerPlayer player, int destIndex) {
+    public static void travel(ServerPlayer player, int destIndex, boolean gold) {
         ServerLevel here = (ServerLevel) player.level();
         ServerLevel dest = here.getServer().getLevel(keyOf(destIndex));
         if (dest == null || dest == here) {
@@ -95,7 +96,7 @@ public final class PortalTravel {
         dest.playSound(null, target, SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1f, 1.2f);
 
         // обратный портал за спиной игрока
-        placePortal(dest, target.relative(facing.getOpposite(), 2), facing, originIndex);
+        placePortal(dest, target.relative(facing.getOpposite(), 2), facing, originIndex, gold);
     }
 
     // ---------------------------------------------------------------- безопасная точка

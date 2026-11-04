@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.AABB;
@@ -27,6 +28,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class PortalFieldBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
     public static final IntegerProperty DEST = IntegerProperty.create("dest", 0, 7);
+    public static final BooleanProperty GOLD = BooleanProperty.create("gold");
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 80);
 
     private static final VoxelShape SHAPE_Z = Block.box(0, 0, 6, 16, 16, 10);
@@ -35,12 +37,12 @@ public class PortalFieldBlock extends Block {
     public PortalFieldBlock(Properties props) {
         super(props);
         registerDefaultState(stateDefinition.any()
-                .setValue(AXIS, Direction.Axis.Z).setValue(DEST, 0).setValue(AGE, 0));
+                .setValue(AXIS, Direction.Axis.Z).setValue(DEST, 0).setValue(AGE, 0).setValue(GOLD, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AXIS, DEST, AGE);
+        builder.add(AXIS, DEST, AGE, GOLD);
     }
 
     @Override
@@ -54,7 +56,7 @@ public class PortalFieldBlock extends Block {
         List<ServerPlayer> players = level.getEntitiesOfClass(ServerPlayer.class, box);
         if (!players.isEmpty()) {
             level.removeBlock(pos, false);
-            PortalTravel.travel(players.get(0), state.getValue(DEST));
+            PortalTravel.travel(players.get(0), state.getValue(DEST), state.getValue(GOLD));
             return;
         }
         int age = state.getValue(AGE);

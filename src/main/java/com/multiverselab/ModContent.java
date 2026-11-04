@@ -76,13 +76,15 @@ public final class ModContent {
 
     static {
         for (String name : GUN_IDS) {
-            GUNS.put(name, item(name, PortalGunItem::new, new Item.Properties().stacksTo(1)));
+            boolean golden = name.equals("golden_portal_gun");
+            GUNS.put(name, item(name, p -> new PortalGunItem(p, golden), new Item.Properties().stacksTo(1)));
         }
     }
 
     public static final Item PORTAL_GUN = GUNS.get("portal_gun");
 
     public static final Item PORTAL_VIAL = simple("portal_fluid_vial", new Item.Properties().stacksTo(16));
+    public static final Item GOLD_VIAL = simple("golden_portal_fluid", new Item.Properties().stacksTo(16));
     public static final Item SERUM_VIAL = item("antigrav_serum", SerumVialItem::new, new Item.Properties().stacksTo(16));
     public static final Item FLURBO = simple("flurbo_crystal", new Item.Properties());
     public static final Item MEGA_SEED = simple("mega_seed_extract", new Item.Properties());
@@ -106,6 +108,7 @@ public final class ModContent {
                         out.accept(MEGA_SEED);
                         out.accept(GOO);
                         out.accept(PORTAL_VIAL);
+                        out.accept(GOLD_VIAL);
                         out.accept(SERUM_VIAL);
                     })
                     .build());
