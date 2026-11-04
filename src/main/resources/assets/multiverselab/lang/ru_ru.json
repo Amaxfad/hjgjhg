@@ -55,5 +55,14 @@
   "multiverselab.notebook.clone": "Сыворотка клона: 1 : 1 : 2  (или 2 : 2 : 4). ПКМ по пустой капсуле клонирования.",
   "item.multiverselab.golden_portal_fluid": "Флакон золотой портальной жидкости",
   "multiverselab.msg.gold": "Жидкость стала ЗОЛОТОЙ!",
-  "multiverselab.notebook.gold": "Золотая жидкость (для золотой пушки): готовая портальная жидкость + 1 золотой слиток (ПКМ по колбе)."
+  "multiverselab.notebook.gold": "Золотая жидкость (для золотой пушки): готовая портальная жидкость + 1 золотой слиток (ПКМ по колбе).",
+  "entity.multiverselab.evil_morty": "Злой Морти",
+  "item.multiverselab.evil_morty_spawn_egg": "Яйцо призыва Злого Морти",
+  "item.multiverselab.evil_morty_eyepatch": "Повязка Злого Морти",
+  "item.multiverselab.cyber_arm": "Кибер-рука",
+  "item.multiverselab.cyber_leg": "Кибер-нога",
+  "item.multiverselab.cyber_eye": "Кибер-глаз",
+  "multiverselab.msg.implanted": "Протез установлен!",
+  "multiverselab.msg.has_implant": "Этот протез у вас уже стоит",
+  "multiverselab.notebook.implants": "Протезы (ПКМ - установить навсегда): рука = спешка + сила, нога = скорость + прыжок, глаз = ночное зрение (делается из повязки, которую роняет Злой Морти)."
 }

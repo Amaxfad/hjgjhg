@@ -55,5 +55,14 @@
   "multiverselab.notebook.clone": "Clone Serum: 1 : 1 : 2  (or 2 : 2 : 4). Right-click an empty Clone Pod with it.",
   "item.multiverselab.golden_portal_fluid": "Golden Portal Fluid Vial",
   "multiverselab.msg.gold": "The fluid turned GOLD!",
-  "multiverselab.notebook.gold": "Golden Fluid (for the Golden Portal Gun): finished Portal Fluid + 1 Gold Ingot (right-click the flask)."
+  "multiverselab.notebook.gold": "Golden Fluid (for the Golden Portal Gun): finished Portal Fluid + 1 Gold Ingot (right-click the flask).",
+  "entity.multiverselab.evil_morty": "Evil Morty",
+  "item.multiverselab.evil_morty_spawn_egg": "Evil Morty Spawn Egg",
+  "item.multiverselab.evil_morty_eyepatch": "Evil Morty's Eyepatch",
+  "item.multiverselab.cyber_arm": "Cybernetic Arm",
+  "item.multiverselab.cyber_leg": "Cybernetic Leg",
+  "item.multiverselab.cyber_eye": "Cybernetic Eye",
+  "multiverselab.msg.implanted": "Implant installed!",
+  "multiverselab.msg.has_implant": "You already have this implant",
+  "multiverselab.notebook.implants": "Implants (use to install, permanent): Arm = Haste + Strength, Leg = Speed + Jump, Eye = Night Vision (craft with the eyepatch Evil Morty drops)."
 }

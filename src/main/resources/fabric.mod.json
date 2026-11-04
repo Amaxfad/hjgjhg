@@ -8,7 +8,8 @@
 	"license": "CC0-1.0",
 	"environment": "*",
 	"entrypoints": {
-		"main": ["com.multiverselab.MultiverseLab"]
+		"main": ["com.multiverselab.MultiverseLab"],
+		"client": ["com.multiverselab.client.MultiverseLabClient"]
 	},
 	"depends": {
 		"fabricloader": ">=0.20.1",

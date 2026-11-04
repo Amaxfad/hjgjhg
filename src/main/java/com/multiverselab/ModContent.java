@@ -12,6 +12,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -44,6 +46,12 @@ public final class ModContent {
     // ------------------------------------------------------------ звук
     public static final SoundEvent PORTAL_SHOOT = Registry.register(BuiltInRegistries.SOUND_EVENT,
             id("item.portal_gun.shoot"), SoundEvent.createVariableRangeEvent(id("item.portal_gun.shoot")));
+
+    // ------------------------------------------------------------ существа
+    public static final EntityType<EvilMortyEntity> EVIL_MORTY = Registry.register(BuiltInRegistries.ENTITY_TYPE,
+            ResourceKey.create(Registries.ENTITY_TYPE, id("evil_morty")),
+            EntityType.Builder.of(EvilMortyEntity::new, MobCategory.MONSTER).sized(0.6f, 1.8f)
+                    .build(ResourceKey.create(Registries.ENTITY_TYPE, id("evil_morty"))));
 
     // ------------------------------------------------------------ блоки
     public static final Block LAB_FLASK = block("lab_flask", FlaskBlock::new,
@@ -89,6 +97,12 @@ public final class ModContent {
     public static final Item FLURBO = simple("flurbo_crystal", new Item.Properties());
     public static final Item MEGA_SEED = simple("mega_seed_extract", new Item.Properties());
     public static final Item GOO = simple("interdimensional_goo", new Item.Properties());
+    public static final Item EVIL_MORTY_EGG = simple("evil_morty_spawn_egg", new Item.Properties().spawnEgg(EVIL_MORTY));
+    public static final Item EYEPATCH = simple("evil_morty_eyepatch", new Item.Properties().stacksTo(1));
+    public static final Item CYBER_ARM = item("cyber_arm", p -> new Implants.ImplantItem(p, Implants.ARM), new Item.Properties().stacksTo(1));
+    public static final Item CYBER_LEG = item("cyber_leg", p -> new Implants.ImplantItem(p, Implants.LEG), new Item.Properties().stacksTo(1));
+    public static final Item CYBER_EYE = item("cyber_eye", p -> new Implants.ImplantItem(p, Implants.EYE), new Item.Properties().stacksTo(1));
+
     public static final Item MIXING_ROD = simple("mixing_rod", new Item.Properties().stacksTo(1));
     public static final Item NOTEBOOK = item("lab_notebook", NotebookItem::new, new Item.Properties().stacksTo(1));
 
@@ -110,6 +124,11 @@ public final class ModContent {
                         out.accept(PORTAL_VIAL);
                         out.accept(GOLD_VIAL);
                         out.accept(SERUM_VIAL);
+                        out.accept(EVIL_MORTY_EGG);
+                        out.accept(EYEPATCH);
+                        out.accept(CYBER_ARM);
+                        out.accept(CYBER_LEG);
+                        out.accept(CYBER_EYE);
                     })
                     .build());
 
