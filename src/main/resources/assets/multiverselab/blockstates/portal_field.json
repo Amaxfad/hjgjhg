@@ -2,7 +2,8 @@
   "multipart": [
     {
       "when": {
-        "axis": "z"
+        "axis": "z",
+        "gold": "false"
       },
       "apply": {
         "model": "multiverselab:block/portal_field"
@@ -10,10 +11,30 @@
     },
     {
       "when": {
-        "axis": "x"
+        "axis": "x",
+        "gold": "false"
       },
       "apply": {
         "model": "multiverselab:block/portal_field",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "gold": "true"
+      },
+      "apply": {
+        "model": "multiverselab:block/portal_field_gold"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "gold": "true"
+      },
+      "apply": {
+        "model": "multiverselab:block/portal_field_gold",
         "y": 90
       }
     }

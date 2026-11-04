@@ -38,10 +38,10 @@ public class FlaskBlock extends Block {
     public static final EnumProperty<Liquid> LIQUID = EnumProperty.create("liquid", Liquid.class);
 
     public enum Liquid implements StringRepresentable {
-        NONE, MURKY, PORTAL, SERUM, CLONE;
+        NONE, MURKY, PORTAL, SERUM, CLONE, GOLD;
 
         boolean finished() {
-            return this == PORTAL || this == SERUM || this == CLONE;
+            return this == PORTAL || this == SERUM || this == CLONE || this == GOLD;
         }
 
         @Override
@@ -113,6 +113,22 @@ public class FlaskBlock extends Block {
             return InteractionResult.SUCCESS;
         }
 
+        // золотой рецепт: готовая портальная жидкость + золотой слиток = золотая жидкость
+        if (stack.is(Items.GOLD_INGOT) && state.getValue(LIQUID) == Liquid.PORTAL && state.getValue(FILL) > 0) {
+            if (level.isClientSide()) {
+                return InteractionResult.SUCCESS;
+            }
+            stack.consume(1, player);
+            level.setBlock(pos, state.setValue(LIQUID, Liquid.GOLD), Block.UPDATE_ALL);
+            level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1f, 1.2f);
+            if (level instanceof ServerLevel sl) {
+                sl.sendParticles(ParticleTypes.WAX_ON, pos.getX() + 0.5, pos.getY() + 0.9, pos.getZ() + 0.5,
+                        14, 0.25, 0.25, 0.25, 0.0);
+            }
+            player.displayClientMessage(Component.translatable("multiverselab.msg.gold"), true);
+            return InteractionResult.SUCCESS;
+        }
+
         if (stack.is(ModContent.MIXING_ROD.get())) {
             if (level.isClientSide()) {
                 return InteractionResult.SUCCESS;
@@ -131,6 +147,7 @@ public class FlaskBlock extends Block {
                 stack.consume(1, player);
                 Item vialItem = switch (liquid) {
                     case PORTAL -> ModContent.PORTAL_VIAL.get();
+                    case GOLD -> ModContent.GOLD_VIAL.get();
                     case SERUM -> ModContent.SERUM_VIAL.get();
                     default -> ModContent.CLONE_VIAL.get();
                 };

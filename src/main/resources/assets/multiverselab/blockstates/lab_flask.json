@@ -148,6 +148,42 @@
       "apply": {
         "model": "multiverselab:block/liquid_clone_4"
       }
+    },
+    {
+      "when": {
+        "liquid": "gold",
+        "fill": "1"
+      },
+      "apply": {
+        "model": "multiverselab:block/liquid_gold_1"
+      }
+    },
+    {
+      "when": {
+        "liquid": "gold",
+        "fill": "2"
+      },
+      "apply": {
+        "model": "multiverselab:block/liquid_gold_2"
+      }
+    },
+    {
+      "when": {
+        "liquid": "gold",
+        "fill": "3"
+      },
+      "apply": {
+        "model": "multiverselab:block/liquid_gold_3"
+      }
+    },
+    {
+      "when": {
+        "liquid": "gold",
+        "fill": "4"
+      },
+      "apply": {
+        "model": "multiverselab:block/liquid_gold_4"
+      }
     }
   ]
 }

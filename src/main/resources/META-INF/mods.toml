@@ -4,22 +4,22 @@
 
 modLoader="javafml"
 loaderVersion="[61,)"
-license="MIT"
+license="All Rights Reserved"
 #issueTrackerURL="https://github.com/MyOrganization/MyMod/" #optional
 #clientSideOnly=true #optional, default=false
 
 [[mods]]
 modId="multiverselab"
-version="0.1.0"
+version="0.2.0"
 displayName="Multiverse Lab"
 #updateJSONURL="https://example.com/updates.json" #optional
 #displayURL="https://example.com/" #optional
 #logoFile="multiverselab.png" #optional
 #credits="" #optional
-authors="you"
+authors="dimonbromll"
 #displayTest="MATCH_VERSION" #optional, default=MATCH_VERSION when not clientSideOnly, else IGNORE_ALL_VERSION
 
-description='''Portal gun, dimensions and a lab where wrong proportions blow everything up.'''
+description='''Rick and Morty: portal gun, dimensions, flasks, clone pods, Evil Morty and cybernetic implants.'''
 
 [[dependencies.multiverselab]] #recommended
     modId="forge"

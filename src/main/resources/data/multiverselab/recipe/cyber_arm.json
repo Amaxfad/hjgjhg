@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "III",
+    "FRF",
+    " I "
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "F": "multiverselab:flurbo_crystal",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "multiverselab:cyber_arm",
+    "count": 1
+  }
+}

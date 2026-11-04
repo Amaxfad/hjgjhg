@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "multiverselab:evil_morty_eyepatch",
+    "minecraft:ender_eye",
+    "minecraft:redstone"
+  ],
+  "result": {
+    "id": "multiverselab:cyber_eye",
+    "count": 1
+  }
+}

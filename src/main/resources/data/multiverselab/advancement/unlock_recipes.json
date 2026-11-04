@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "multiverselab:clone_pod",
+      "multiverselab:cyber_arm",
+      "multiverselab:cyber_eye",
+      "multiverselab:cyber_leg",
+      "multiverselab:flurbo_crystal",
+      "multiverselab:interdimensional_goo",
+      "multiverselab:lab_flask",
+      "multiverselab:lab_notebook",
+      "multiverselab:mega_seed_extract",
+      "multiverselab:mixing_rod",
+      "multiverselab:portal_gun"
+    ]
+  }
+}

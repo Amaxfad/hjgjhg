@@ -23,9 +23,15 @@ import net.minecraft.world.level.Level;
 public class PortalGunItem extends Item {
     public static final int MAX_FUEL = 16;
     public static final int FUEL_PER_VIAL = 4;
+    /** Золотая пушка: больше топлива, золотой портал, своя золотая жидкость. */
+    public static final int GOLD_MAX_FUEL = 32;
+    public static final int GOLD_FUEL_PER_VIAL = 8;
 
-    public PortalGunItem(Properties props) {
+    private final boolean golden;
+
+    public PortalGunItem(Properties props, boolean golden) {
         super(props);
+        this.golden = golden;
     }
 
     @Override
@@ -49,15 +55,17 @@ public class PortalGunItem extends Item {
 
         InteractionHand other = hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
         ItemStack vial = player.getItemInHand(other);
-        if (vial.is(ModContent.PORTAL_VIAL.get())) {
-            if (fuel + FUEL_PER_VIAL > MAX_FUEL) {
+        int maxFuel = golden ? GOLD_MAX_FUEL : MAX_FUEL;
+        int perVial = golden ? GOLD_FUEL_PER_VIAL : FUEL_PER_VIAL;
+        if (vial.is(golden ? ModContent.GOLD_VIAL.get() : ModContent.PORTAL_VIAL.get())) {
+            if (fuel + perVial > maxFuel) {
                 player.displayClientMessage(Component.translatable("multiverselab.msg.full"), true);
                 return InteractionResult.FAIL;
             }
             vial.consume(1, player);
-            fuel += FUEL_PER_VIAL;
+            fuel += perVial;
             setInt(gun, "fuel", fuel);
-            player.displayClientMessage(Component.translatable("multiverselab.msg.fuel", fuel, MAX_FUEL), true);
+            player.displayClientMessage(Component.translatable("multiverselab.msg.fuel", fuel, maxFuel), true);
             return InteractionResult.SUCCESS;
         }
 
@@ -76,14 +84,14 @@ public class PortalGunItem extends Item {
 
         Direction dir = player.getDirection();
         BlockPos spot = player.blockPosition().relative(dir, 2);
-        if (!PortalTravel.placePortal(here, spot, dir, idx)) {
+        if (!PortalTravel.placePortal(here, spot, dir, idx, golden)) {
             player.displayClientMessage(Component.translatable("multiverselab.msg.blocked"), true);
             return InteractionResult.FAIL;
         }
 
         here.playSound(null, spot, ModContent.PORTAL_SHOOT.get(), SoundSource.PLAYERS, 1f, 1f);
         setInt(gun, "fuel", fuel - 1);
-        player.getCooldowns().addCooldown(gun, 20);
+        player.getCooldowns().addCooldown(gun, golden ? 10 : 20);
         return InteractionResult.SUCCESS;
     }
 
